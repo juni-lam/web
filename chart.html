@@ -1,0 +1,240 @@
+\<!DOCTYPE html>
+<html lang="en">
+<head>
+  <script type="text/javascript" src="https://public.tableau.com/javascripts/api/viz_v1.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tugas Struktur</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet" />
+  <style>
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", sans-serif;
+      background-color: #f4f7fa;
+      display: flex;
+      flex-direction: row;
+      min-height: 100vh;
+    }
+    .sidebar {
+      width: 280px;
+      background: #1f2d3d;
+      color: white;
+      padding-top: 30px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+      flex-shrink: 0;
+    }
+    .sidebar h2 {
+      text-align: center;
+      font-size: 24px;
+      margin-bottom: 25px;
+      font-weight: 600;
+    }
+    .sidebar a {
+      padding: 14px 24px;
+      color: #dbe3ec;
+      text-decoration: none;
+      transition: background 0.3s ease, color 0.3s ease;
+      border-left: 4px solid transparent;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      margin: 4px 0;
+    }
+    .sidebar a:hover {
+      background-color: #2e3e4e;
+      color: #ffffff;
+    }
+    .sidebar a.active {
+      background-color: #32475b;
+      color: #ffffff;
+      border-left: 4px solid #00c6ff;
+    }
+    .main-content {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px 10px;
+      overflow-y: auto;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    h1 {
+      margin-top: 0;
+      font-size: 28px;
+      color: #1f2d3d;
+    }
+    .tableauPlaceholder {
+      width: 100%;
+      max-width: 1500px;
+      min-height: 800px;
+      margin: 20px auto 0 auto;
+      animation: fadeIn 0.3s ease-in-out;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 800px;
+      border: none;
+      border-radius: 10px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    }
+    footer {
+      width: 100%;
+      text-align: center;
+      padding: 15px 0;
+      background-color: #1f2d3d;
+      color: #dbe3ec;
+      font-size: 16px;
+      margin-top: 90px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(10px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @media (max-width: 768px) {
+      body { flex-direction: column; }
+      .sidebar {
+        width: 100%;
+        flex-direction: row;
+        overflow-x: auto;
+        white-space: nowrap;
+        padding: 10px 0;
+        justify-content: start;
+        align-items: center;
+      }
+      .sidebar h2 { display: none; }
+      .sidebar a {
+        flex: 0 0 auto;
+        font-size: 14px;
+        padding: 10px;
+        margin: 0 6px;
+        border-left: none;
+        border-bottom: 3px solid transparent;
+      }
+      .sidebar a.active {
+        border-bottom: 3px solid #00c6ff;
+        background-color: transparent;
+      }
+      .main-content { padding: 10px; }
+      iframe { min-height: 500px; }
+      footer { font-size: 18px; padding: 10px; }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    <h2><i class="fas fa-chart-bar"></i> Dashboards</h2>
+   
+    <a class="menu-item active" data-name="Sheet1"><i class="fas fa-chart-column"></i> Bar Chart</a>
+    <a class="menu-item" data-name="Sheet2"><i class="fas fa-chart-line"></i> Line Chart</a>
+    <a class="menu-item" data-name="Sheet3"><i class="fas fa-chart-pie"></i> Pie Chart</a>
+    <a class="menu-item" data-name="Sheet4"><i class="fas fa-map-marked-alt"></i> Map Chart</a>
+    <a class="menu-item" data-name="Sheet5"><i class="fas fa-braille"></i> Scatter Plot</a>
+    <a class="menu-item" data-name="Sheet6"><i class="fas fa-circle"></i> Bubble Chart</a>
+    <a class="menu-item" data-name="Sheet7"><i class="fas fa-sitemap"></i> Tree Map</a>
+    <a class="menu-item" data-name="Sheet9"><i class="fas fa-candy-cane"></i> Lollipop Chart</a>
+    <a class="menu-item" data-name="Sheet10"><i class="fas fa-cloud"></i> Word Cloud</a>
+    <a class="menu-item" data-name="Sheet11"><i class="fas fa-box"></i> Box Plot</a>
+    <a class="menu-item" data-name="Sheet12"><i class="fas fa-chart-area"></i> Histogram</a>
+  </div>
+
+  <div class="main-content">
+    <h1 id="chart-title">Dashboard</h1>
+    <div class="tableauPlaceholder" id="vizContainer"></div>
+    <footer>
+      &copy; 2025 Tugas Struktur Data – Dibuat oleh junivan steven gerad sinaga_2431207_2SIMC
+    </footer>
+  </div>
+
+  <script>
+    const chartTitles = {
+      Dashboard13: "Dashboard",
+      Sheet1: "Bar Chart",
+      Sheet2: "Line Chart",
+      Sheet3: "Pie Chart",
+      Sheet4: "Map Chart",
+      Sheet5: "Scatter Plot",
+      Sheet6: "Bubble Chart",
+      Sheet7: "Tree Map",
+      Sheet8: "Gantt Chart",
+      Sheet9: "Lollipop Chart",
+      Sheet10: "Word Cloud",
+      Sheet11: "Box Plot",
+      Sheet12: "Histogram",
+    };
+
+    const tableauURLs = {
+      Sheet1: "https://public.tableau.com/views/junivan/Sheet1?:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+      Sheet2: "https://public.tableau.com/views/LineChart_17513569027280/Sheet1?:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+      Sheet3: "https://public.tableau.com/views/PieChart_17513472463450/Sheet1:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+      Sheet4: "https://public.tableau.com/views/MapChart_17513481359460/Sheet1?:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+      Sheet5: "https://public.tableau.com/views/ScatterPlot_17513587079890/Sheet1?:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+      Sheet6: "https://public.tableau.com/views/BubbleChart_17514273291280/Sheet1?:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+      Sheet7: "https://public.tableau.com/views/TreeMap_17514276839610/Sheet1?:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+      Sheet9: "https://public.tableau.com/views/lolipopchart_17514282884070/Sheet1?:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+      Sheet10: "https://public.tableau.com/views/WordCloud_17514286609770/Sheet1?:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+      Sheet11: "https://public.tableau.com/views/BoxPlot_17514313097520/Sheet1?:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+      Sheet12: "https://public.tableau.com/views/HistogramChart_17514305347700/Sheet1?:showVizHome=no&:embed=true&:toolbar=no&:tabs=no",
+    };
+
+    const container = document.getElementById("vizContainer");
+    const chartTitle = document.getElementById("chart-title");
+    const menuItems = document.querySelectorAll(".menu-item");
+
+    function loadViz(sheetName) {
+      chartTitle.textContent = chartTitles[sheetName] || "Dashboard";
+      if (sheetName === "Dashboard13") {
+        container.innerHTML = `
+          <div class='tableauPlaceholder' id='viz1748840464262' style='position: relative'>
+            <noscript>
+              <a href='#'>
+                <img alt='SUPERSTORE Orders Analysis'
+                  src='https://public.tableau.com/static/images/6G/6Graph/Dashboard1/1_rss.png'
+                  style='border: none' />
+              </a>
+            </noscript>
+            <object class='tableauViz' style='display:none;'>
+              <param name='host_url' value='https%3A%2F%2Fpublic.tableau.com%2F' />
+              <param name='embed_code_version' value='3' />
+              <param name='site_root' value='' />
+              <param name='name' value='6Graph/Dashboard1' />
+              <param name='tabs' value='no' />
+              <param name='toolbar' value='yes' />
+              <param name='static_image'
+                value='https://public.tableau.com/static/images/6G/6Graph/Dashboard1/1.png' />
+              <param name='animate_transition' value='yes' />
+              <param name='display_static_image' value='yes' />
+              <param name='display_spinner' value='yes' />
+              <param name='display_overlay' value='yes' />
+              <param name='display_count' value='yes' />
+              <param name='language' value='en-US' />
+            </object>
+          </div>
+        `;
+        const scriptElement = document.createElement('script');
+        scriptElement.src = 'https://public.tableau.com/javascripts/api/viz_v1.js';
+        container.querySelector("object").parentNode.insertBefore(scriptElement, container.querySelector("object"));
+      } else {
+        container.innerHTML = `<iframe src="${tableauURLs[sheetName]}" allowfullscreen onload="this.style.opacity = 1"></iframe>`;
+      }
+    }
+
+    menuItems.forEach((item) => {
+      item.addEventListener("click", () => {
+        menuItems.forEach((i) => i.classList.remove("active"));
+        item.classList.add("active");
+        const sheetName = item.getAttribute("data-name");
+        loadViz(sheetName);
+      });
+    });
+
+    // Load default chart
+    loadViz("Sheet1");
+  </script>
+</body>
+</html>
